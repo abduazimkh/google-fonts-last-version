@@ -9,7 +9,7 @@ import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { inputValue } from "../../redux/features/fonts-slice";
+import { inputValue, searchSelect } from "../../redux/features/fonts-slice";
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -50,7 +50,7 @@ const Nav = () => {
   }, [inputvalue])
 
   const onClick: MenuProps['onClick'] = (e) => {
-    console.log('click ', e);
+    dispatch(searchSelect(e.key))
   };
 
   return (
@@ -68,7 +68,6 @@ const Nav = () => {
             <div className="nav-select">
               <Menu
                 onClick={onClick}
-                style={{ width: 150 }}
                 items={items}
               />
             </div>

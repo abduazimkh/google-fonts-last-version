@@ -4,16 +4,19 @@ import Button from '@mui/material/Button';
 import { GiSettingsKnobs } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
 import Main from "../../layout/main/Main";
+import { useState } from "react";
 
 
 const Home = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: boolean }) => {
+  const [text, setText] = useState<string>("");
+  const [textSize, setTextSize] = useState<number>(36);
 
   return (
     <>
       <div>
         <Button className="filter-btn" onClick={() => setIsOpen(!isOpen)} variant="contained"> {isOpen ? <i><IoMdClose /></i> : <i><GiSettingsKnobs /></i>} Filter</Button>
 
-        <Main />
+        <Main text={text} textSize={textSize} />
 
       </div>
       <Dewider isOpen={isOpen} name="left">
@@ -22,8 +25,8 @@ const Home = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: boolean }) =>
         <div className="modal-left">
           <strong>Preview</strong>
 
-          <textarea placeholder="Type something"></textarea>
-          <input min={8} max={300} type="range" />
+          <textarea value={text} onChange={(e) => setText(e.target.value)} placeholder="Type something"></textarea>
+          <input value={textSize} onChange={(e) => setTextSize(+e.target.value)} min={8} max={300} type="range" />
         </div>
 
       </Dewider>

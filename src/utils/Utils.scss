@@ -17,4 +17,12 @@
   height: 100%;
   background-color: #F8FAFD;
   z-index: 99;
+  transition: all .40s ease;
+}
+
+.font-content-sceleton{
+  border: none;
+  &:hover{
+    background-color: transparent !important;
+  }
 }

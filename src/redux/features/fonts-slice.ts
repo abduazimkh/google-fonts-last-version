@@ -13,17 +13,20 @@ const initialState: InitialStateType = {
     isError: false,
     isLoading: false,
     message: null,
-    input_value: ""
+    input_value: "",
+    search_select: ""
 }
 
-const getFonts = createAsyncThunk("fonts", async () => {
+const getFonts = createAsyncThunk("fonts", async (value: string, {rejectWithValue} : {rejectWithValue: any}) => {
+    console.log(value)
     try {
-        const response: AxiosResponse = await instsnce.get(`/webfonts?key=${API_KEY}`)
+        const response: AxiosResponse = await instsnce.get(`/webfonts?key=${API_KEY}${value ? "&sort="+value : ""}`)
         response.data.items.map((font:any)=>{fontsLoader(font.family)})
         return response.data.items
     }
-    catch (error) {
+    catch (error: any) {
         console.log(error);
+        return rejectWithValue(error.response.data)      
     }
 
 })
@@ -35,6 +38,9 @@ const fontsSlice = createSlice({
     reducers: {
         inputValue: (state, action) => {
             state.input_value = action.payload;
+        },
+        searchSelect: (state, action) => {
+            state.search_select = action.payload;
         }
     },
     extraReducers: (builder) => {
@@ -56,6 +62,6 @@ const fontsSlice = createSlice({
     }
 })
 
-export const { inputValue } = fontsSlice.actions;
+export const { inputValue, searchSelect } = fontsSlice.actions;
 export { getFonts };
 export default fontsSlice.reducer;

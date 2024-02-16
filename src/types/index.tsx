@@ -11,7 +11,8 @@ export type InitialStateType = {
   isSuccess: boolean,
   isLoading: boolean,
   message: null | string,
-  input_value: string
+  input_value: string,
+  search_select: string
 };
 
 export type FontsTypes = {

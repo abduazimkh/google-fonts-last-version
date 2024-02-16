@@ -6,14 +6,13 @@ import { FontsTypes } from "../../types";
 import { CardSkeleton } from "../../utils/Utils";
 
 
-const Main = () => {
-  const { fonts_data, input_value, isLoading } = useSelector((state: any) => state.fonts)
+const Main = ({ text, textSize }: { text: string, textSize: number }) => {
+  const { fonts_data, input_value, search_select, isLoading } = useSelector((state: any) => state.fonts)
   const dispatch: any = useDispatch()
 
-
   useEffect(() => {
-    dispatch(getFonts())
-  }, [])
+    dispatch(getFonts(search_select))
+  }, [search_select])
 
   return (
     <div className="main-wrapper">
@@ -25,7 +24,12 @@ const Main = () => {
               <p>{font.family}</p>
               <strong> | &nbsp; {font.variants.length > 1 ? font.variants.length + " styles" : font.variants.length + " style"}</strong>
             </div>
-            <h2 style={{ fontFamily: font.family + "," + font.category }}>Lorem ipsum dolor sit amet.</h2>
+            <h2 style={{
+              fontFamily: font.family + "," + font.category,
+              whiteSpace: "nowrap",
+              fontSize: textSize,
+            }}
+            > {text.trim().length > 0 ? text : "Lorem ipsum dolor sit amet."} </h2>
           </div>
         ))
       }
