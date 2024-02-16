@@ -10,6 +10,11 @@
     margin-bottom: 1rem;
   }
 
+  span{
+    font-size: 1rem;
+    padding-right: 5px;
+  }
+
   textarea{ 
     resize: vertical;
     min-height: 120px;
@@ -22,6 +27,9 @@
     &:focus-within{
       border: 2px solid dodgerblue;
     }
+    &::-webkit-scrollbar{
+      display: none;
+    }
   }
 
   input[type="range"] {
@@ -31,7 +39,20 @@
     height: 2px;
     background-color: dodgerblue;
   }
+  
+  .css-1c35hjw-MuiPaper-root-MuiAccordion-root{
+    box-shadow: none !important;
+    background-color: #F8FAFD;
 
+    &::before {
+      display: none;
+    }
+    .css-15v22id-MuiAccordionDetails-root{
+      background-color: #E8F0FE;
+      border-radius: 5px;
+    }
+  }
+  padding-bottom: 100px;
 }
 
 .btn-close{

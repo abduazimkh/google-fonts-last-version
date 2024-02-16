@@ -18,6 +18,9 @@ body{
   padding: 0;
   box-sizing: border-box;
   overflow-x: hidden;
+  &::-webkit-scrollbar{
+    display: none;
+  }
 }
 
 a{

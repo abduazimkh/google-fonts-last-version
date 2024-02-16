@@ -6,7 +6,7 @@ import { FontsTypes } from "../../types";
 import { CardSkeleton } from "../../utils/Utils";
 
 
-const Main = ({ text, textSize }: { text: string, textSize: number }) => {
+const Main = ({ text, textSize, resize }: { text: string, textSize: number, resize: number }) => {
   const { fonts_data, input_value, search_select, isLoading } = useSelector((state: any) => state.fonts)
   const dispatch: any = useDispatch()
 
@@ -18,7 +18,7 @@ const Main = ({ text, textSize }: { text: string, textSize: number }) => {
     <div className="main-wrapper">
       {isLoading ? <CardSkeleton amount={10} />
         :
-        fonts_data.filter((font: any) => font.family.toLocaleLowerCase().indexOf(input_value) != -1).map((font: FontsTypes, index: number) => (
+        fonts_data.slice(0, 50).filter((font: any) => input_value ? font.family.toLocaleLowerCase().indexOf(input_value) != -1 : font.variants.length === resize).map((font: FontsTypes, index: number) => (
           <div className="font-content" key={index} >
             <div>
               <p>{font.family}</p>

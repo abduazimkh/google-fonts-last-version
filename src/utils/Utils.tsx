@@ -2,6 +2,11 @@ import "./Utils.scss";
 import { Children } from "../types";
 import Skeleton from "react-loading-skeleton";
 
+const Loading = () => {
+  return (
+    <div className="loader"></div>
+  )
+}
 
 const Container = ({ children }: Children) => {
   return (
@@ -20,8 +25,8 @@ const Dewider = ({ children, name, isOpen }: any) => {
   )
 }
 
-const CardSkeleton = ({ amount }) => {
-  return new Array(amount).fill("").map((skeleton, index) => (
+const CardSkeleton = ({ amount } : { amount: any }) => {
+  return new Array(amount).fill("").map((skeleton: any, index: number) => (
     <div className="font-content font-content-sceleton" style={{ border: "none" }} key={index}>
       <Skeleton count={1} style={{ padding: "30px 0" }} />
       <Skeleton count={3} style={{ marginTop: "10px" }} />
@@ -30,4 +35,4 @@ const CardSkeleton = ({ amount }) => {
 };
 
 
-export { Container, Dewider, CardSkeleton };
+export { Container, Dewider, CardSkeleton, Loading };
