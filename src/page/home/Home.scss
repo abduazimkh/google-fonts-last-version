@@ -1,0 +1,49 @@
+.modal-left{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 2rem;
+
+  strong{
+    font-size: 1.3rem;
+    font-size: sans-serif ;
+    margin-bottom: 1rem;
+  }
+
+  textarea{ 
+    resize: vertical;
+    min-height: 120px;
+    max-height: 300px;
+    border-radius: 20px;
+    padding: 1rem;
+    background-color: #E8F0FE;
+    outline: none;
+    border: 2px solid transparent;
+    &:focus-within{
+      border: 2px solid dodgerblue;
+    }
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    height: 2px;
+    background-color: dodgerblue;
+  }
+
+}
+
+
+.filter-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px ;
+  font-size: 1.2rem;
+  border-radius: 30px !important;
+  i{
+    transform: rotate(90deg);
+    font-size: 1.2rem;
+  }
+}

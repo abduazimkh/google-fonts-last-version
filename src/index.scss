@@ -1,0 +1,27 @@
+@import url("./styles/reset.scss");
+
+:root{
+  --pl-color: #fff;
+  --pd-color: #333;
+  --pg-color: #F3F6FC;
+}
+
+*{
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+a{
+  text-decoration: none;
+}
+
+
