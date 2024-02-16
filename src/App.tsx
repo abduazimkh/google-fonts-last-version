@@ -10,12 +10,13 @@ import "react-toastify/dist/ReactToastify.css";
 import "react-loading-skeleton/dist/skeleton.css";
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { useTheme } from '@emotion/react';
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => { } });
 
 function App() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  
+  const themee = useTheme();
   const [mode, setMode] = useState<'light' | 'dark'>('light');
 
   const colorMode = React.useMemo(
@@ -42,7 +43,7 @@ function App() {
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
           <Sidebar colorMode={colorMode} />
-          <div style={isOpen ? { paddingLeft: "300px" } : { paddingLeft: "0px" }} className='app-item'>
+          <div style={isOpen ? { paddingLeft: "300px" } : { paddingLeft: "0px" }}  className='app-item'>
             <Container >
               <Nav />
               <Routes isOpen={isOpen} setIsOpen={setIsOpen} />

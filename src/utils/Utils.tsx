@@ -1,6 +1,7 @@
 import "./Utils.scss";
 import { Children } from "../types";
 import Skeleton from "react-loading-skeleton";
+import { useTheme } from "@emotion/react";
 
 const Loading = () => {
   return (
@@ -25,7 +26,7 @@ const Dewider = ({ children, name, isOpen }: any) => {
   )
 }
 
-const CardSkeleton = ({ amount } : { amount: any }) => {
+const CardSkeleton = ({ amount }: { amount: any }) => {
   return new Array(amount).fill("").map((skeleton: any, index: number) => (
     <div className="font-content font-content-sceleton" style={{ border: "none" }} key={index}>
       <Skeleton count={1} style={{ padding: "30px 0" }} />

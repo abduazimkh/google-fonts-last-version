@@ -14,11 +14,11 @@ const Sidebar = ({ colorMode }: { colorMode: any }) => {
   const theme = useTheme();
 
   return (
-    <div className="sidebar-wrapper">
+    <div style={{ backgroundColor: `${theme.palette.mode == 'dark' ? "#777" : "#fff"}` }} className="sidebar-wrapper">
       <aside>
         <ul>
           <li>
-            <NavLink to="/">
+            <NavLink style={{ color: `${theme.palette.mode !== 'dark' ? "#333" : "#fff"}` }} to="/">
               <i>
                 <p>A</p>
               </i>
@@ -27,37 +27,36 @@ const Sidebar = ({ colorMode }: { colorMode: any }) => {
           </li>
 
           <li>
-            <NavLink to="/">
+            <NavLink style={{ color: `${theme.palette.mode !== 'dark' ? "#333" : "#fff"}` }} to="/">
               <i><GrLanguage /></i>
               <span>Noto</span>
             </NavLink>
           </li>
 
           <li>
-            <NavLink to="/">
+            <NavLink style={{ color: `${theme.palette.mode !== 'dark' ? "#333" : "#fff"}` }} to="/">
               <i><TbIcons /></i>
               <span>Icons</span>
             </NavLink>
           </li>
 
           <li>
-            <NavLink to="/">
+            <NavLink style={{ color: `${theme.palette.mode !== 'dark' ? "#333" : "#fff"}` }} to="/">
               <i><PiGraduationCap /></i>
               <span>Knowladge</span>
             </NavLink>
           </li>
 
           <li>
-            <NavLink to="/">
+            <NavLink style={{ color: `${theme.palette.mode !== 'dark' ? "#333" : "#fff"}` }} to="/">
               <i><BsQuestionCircle /></i>
               <span>Faq</span>
             </NavLink>
           </li>
         </ul>
 
-
         <IconButton onClick={colorMode.toggleColorMode} color="inherit">
-          {theme.palette.mode !== 'dark' ? <FiMoon /> : <TfiShine />}
+          {theme.palette.mode === 'dark' ? <TfiShine style={{ color: `${theme.palette.mode !== 'dark' ? "#333" : "#fff"}` }} /> : <FiMoon style={{ color: `${theme.palette.mode !== 'dark' ? "#333" : "#fff"}` }} />}
         </IconButton>
       </aside>
     </div>

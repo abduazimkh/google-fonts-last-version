@@ -10,6 +10,7 @@ import { Menu } from 'antd';
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { inputValue, searchSelect } from "../../redux/features/fonts-slice";
+import { useTheme } from "@emotion/react";
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -44,6 +45,7 @@ const items: MenuProps['items'] = [
 const Nav = () => {
   const [inputvalue, setInputValue] = useState<string>("");
   const dispatch = useDispatch()
+  const theme = useTheme()
 
   useEffect(() => {
     dispatch(inputValue(inputvalue.toLocaleLowerCase()))
@@ -52,6 +54,12 @@ const Nav = () => {
   const onClick: MenuProps['onClick'] = (e) => {
     dispatch(searchSelect(e.key))
   };
+
+  useEffect(() => {
+    theme.palette.mode === 'dark' ?
+      document.body.style = "background-color: #333" :
+      document.body.style = "background-color: #fff"
+  }, [theme])
 
   return (
     <>
