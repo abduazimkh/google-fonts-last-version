@@ -1,5 +1,7 @@
 import "./Utils.scss";
 import { Children } from "../types";
+import Skeleton from "react-loading-skeleton";
+
 
 const Container = ({ children }: Children) => {
   return (
@@ -18,5 +20,14 @@ const Dewider = ({ children, name, isOpen }: any) => {
   )
 }
 
+const CardSkeleton = ({ amount }) => {
+  return new Array(amount).fill("").map((skeleton, index) => (
+    <div className="font-content" style={{ border: "none" }} key={index}>
+      <Skeleton count={1} style={{ padding: "30px 0" }} />
+      <Skeleton count={3} style={{ marginTop: "7px" }} />
+    </div>
+  ));
+};
 
-export { Container, Dewider };
+
+export { Container, Dewider, CardSkeleton };

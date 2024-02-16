@@ -42,10 +42,11 @@ const fontsSlice = createSlice({
             state.isLoading = true
         }),
         builder.addCase(getFonts.fulfilled, (state, action) => {
-            state.fonts_data = action.payload,
-            state.message = "Successfully added",
+            state.isLoading = false,
             state.isSuccess = true,
-            state.isError = false
+            state.isError = false,
+            state.fonts_data = action.payload,
+            state.message = "Successfully added"
         }),
         builder.addCase(getFonts.rejected, (state, _) => {
             state.isError = true,

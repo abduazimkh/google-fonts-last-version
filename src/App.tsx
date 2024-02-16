@@ -4,6 +4,9 @@ import Nav from './layout/nav/Nav';
 import Sidebar from './layout/sidebar/Sidebar';
 import { Container } from './utils/Utils';
 import { useState } from 'react';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "react-loading-skeleton/dist/skeleton.css";
 
 function App() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -17,7 +20,7 @@ function App() {
           <Routes isOpen={isOpen} setIsOpen={setIsOpen} />
         </Container>
       </div>
-
+      <ToastContainer position="top-center" theme="colored" limit={2} />
     </div>
   )
 }

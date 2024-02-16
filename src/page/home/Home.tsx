@@ -17,7 +17,7 @@ const Home = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: boolean }) =>
 
       </div>
       <Dewider isOpen={isOpen} name="left">
-        <button onClick={() => setIsOpen(false)}>X</button>
+        <button className="btn-close" onClick={() => setIsOpen(false)}>X</button>
 
         <div className="modal-left">
           <strong>Preview</strong>

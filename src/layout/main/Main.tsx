@@ -3,10 +3,13 @@ import { getFonts } from "../../redux/features/fonts-slice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { FontsTypes } from "../../types";
+import { CardSkeleton } from "../../utils/Utils";
+
 
 const Main = () => {
-  const { fonts_data, input_value } = useSelector((state: any) => state.fonts)
+  const { fonts_data, input_value, isLoading } = useSelector((state: any) => state.fonts)
   const dispatch: any = useDispatch()
+
 
   useEffect(() => {
     dispatch(getFonts())
@@ -14,7 +17,8 @@ const Main = () => {
 
   return (
     <div className="main-wrapper">
-      {
+      {isLoading ? <CardSkeleton amount={10} />
+        :
         fonts_data.filter((font: any) => font.family.toLocaleLowerCase().indexOf(input_value) != -1).map((font: FontsTypes, index: number) => (
           <div className="font-content" key={index} >
             <div>
