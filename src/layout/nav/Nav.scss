@@ -74,13 +74,21 @@ nav{
 
 
 @media only screen and (max-width: 950px) {
+  .navigation{
+    padding: 1rem 0;
+    .nav-logo{
+    .first{
+      width: 200px;
+      height: 60px;
+      object-fit: cover;
+      margin-left: -2rem;
+    }
+  }
+}
   nav{
     form{
       input{
         border-right: 0;
-      }
-      button{
-        display: none;
       }
     }
   }
@@ -88,7 +96,6 @@ nav{
 
 @media only screen and (max-width: 800px) {
   .navigation{
-    padding: 1rem 0;
     .nav-logo{
       .first{
         display: none;
@@ -103,13 +110,28 @@ nav{
   }
 }
 
+@media only screen and (max-width: 600px) {
+  .nav-select{
+    display: none;
+  }
+}
+
 @media only screen and (max-width: 500px) {
   nav{
-    gap: 10px;
+    gap: 5px;
+    form{
+      height: 30px;
+      i,input{
+        font-size: .6rem;
+      }
+    }
+    .css-rt4zii-MuiBadge-badge{
+      display: none !important; 
+    }
     .cart{
-      width: 35px;
-      height: 35px;
-      font-size: 1.2rem;
+      width: 25px;
+      height: 25px;
+      font-size: .7rem;
     }
   }
   

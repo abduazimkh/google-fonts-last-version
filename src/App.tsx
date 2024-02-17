@@ -16,7 +16,14 @@ const ColorModeContext = React.createContext({ toggleColorMode: () => { } });
 
 function App() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const themee = useTheme();
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      setIsOpen(true)
+    }, 200)
+  }, [])
+
+
   const [mode, setMode] = useState<'light' | 'dark'>('light');
 
   const colorMode = React.useMemo(
@@ -43,7 +50,7 @@ function App() {
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
           <Sidebar colorMode={colorMode} />
-          <div style={isOpen ? { paddingLeft: "300px" } : { paddingLeft: "0px" }}  className='app-item'>
+          <div style={isOpen ? { paddingLeft: "300px" } : { paddingLeft: "0px" }} className='app-item'>
             <Container >
               <Nav />
               <Routes isOpen={isOpen} setIsOpen={setIsOpen} />

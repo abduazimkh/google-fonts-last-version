@@ -14,13 +14,13 @@ const initialState: InitialStateType = {
     isLoading: false,
     message: null,
     input_value: "",
-    search_select: ""
+    search_select: "",
+    single_font: ""
 }
 
-const getFonts = createAsyncThunk("fonts", async (value: string, {rejectWithValue} : {rejectWithValue: any}) => {
-    console.log(value)
+const getFonts = createAsyncThunk("fonts", async (value: any, {rejectWithValue} : {rejectWithValue: any}) => {
     try {
-        const response: AxiosResponse = await instsnce.get(`/webfonts?key=${API_KEY}${value ? "&sort="+value : ""}`)
+        const response: AxiosResponse = await instsnce.get(`/webfonts?key=${API_KEY}${value.search_select ? "&sort="+value.search_select : ""}${window.location.pathname != "/" && value.single_font ? "&family="+value.single_font : ""}`)
         response.data.items.map((font:any)=>{fontsLoader(font.family)})
         return response.data.items
     }
@@ -37,10 +37,16 @@ const fontsSlice = createSlice({
     initialState,
     reducers: {
         inputValue: (state, action) => {
-            state.input_value = action.payload;
+            localStorage.setItem("search", action.payload);
+            state.input_value = localStorage.getItem("search") as string;
         },
         searchSelect: (state, action) => {
-            state.search_select = action.payload;
+            localStorage.setItem("search-select", action.payload);
+            state.search_select = localStorage.getItem("search-select") as string;
+        },
+        singleFont: (state, action) => {
+            localStorage.setItem("single-font", action.payload);
+            state.single_font = localStorage.getItem("single-font") as string;
         }
     },
     extraReducers: (builder) => {
@@ -62,6 +68,6 @@ const fontsSlice = createSlice({
     }
 })
 
-export const { inputValue, searchSelect } = fontsSlice.actions;
+export const { inputValue, searchSelect, singleFont } = fontsSlice.actions;
 export { getFonts };
 export default fontsSlice.reducer;

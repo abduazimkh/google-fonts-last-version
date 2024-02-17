@@ -20,7 +20,7 @@ const Container = ({ children }: Children) => {
 const Dewider = ({ children, name, isOpen }: any) => {
 
   return (
-    <div style={isOpen ? { transform: "translateX(0px)" } : { transform: "translateX(-100%)" }} className={`dewider-${name}`}>
+    <div style={isOpen ? { transform: "translateX(0%)" } : { transform: "translateX(-200%)" }} className={`dewider-${name}`}>
       {children}
     </div>
   )

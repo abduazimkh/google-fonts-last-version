@@ -39,6 +39,7 @@ const items: MenuProps['items'] = [
     getItem('popularity', 'popularity'),
     getItem('style', 'style'),
     getItem('trending', 'trending'),
+    getItem('name', ''),
   ]),
 ];
 

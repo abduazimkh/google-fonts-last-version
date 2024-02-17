@@ -3,6 +3,7 @@ import { useRoutes } from "react-router-dom";
 import { Loading } from "../utils/Utils";
 
 const Home = lazy(() => import("../page/home/Home"));
+const SingleFont = lazy(() => import("../page/single-font/SingleFont"));
 
 const RouteController = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: boolean }) => {
 
@@ -12,6 +13,14 @@ const RouteController = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: bo
       element: (
         <Suspense fallback={<Loading />}>
           <Home isOpen={isOpen} setIsOpen={setIsOpen} />
+        </Suspense>
+      )
+    },
+    {
+      path: "/single-font/:font",
+      element: (
+        <Suspense fallback={<Loading />}>
+          <SingleFont isOpen={isOpen} setIsOpen={setIsOpen} />
         </Suspense>
       )
     }

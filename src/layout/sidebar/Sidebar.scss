@@ -51,22 +51,58 @@ aside{
   }
 }
 
-
 @media only screen and (max-width: 700px) {
   .sidebar-wrapper{
     top: auto;
-    bottom: 0%;
+    bottom: 0;
     min-height: auto;
     max-height: 100px !important;
     min-width: 100vw !important;
     width: 100% !important;
+    box-shadow: 0 0 10px 2px #80808054;
   }
 
   aside{
     padding: 0 1rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
     ul{
       flex-direction: row;
       justify-content: space-between;
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .sidebar-wrapper{
+    max-height: 80px !important;
+    padding: 0 .5rem;
+  }
+
+  aside{
+    padding: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    .css-zylse7-MuiButtonBase-root-MuiIconButton-root{
+      font-size: 14px !important;
+    }
+
+    ul{
+      font-size: 5px !important;
+      li a{
+        i{
+          font-size: 14px;
+          p{
+            font-size: 14px;
+            width: 14px;
+            height: 14px;
+          }
+        }
+      }
     }
   }
 }
