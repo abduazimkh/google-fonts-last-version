@@ -10,7 +10,7 @@ import { Flex, Typography } from "antd";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { MdLanguage } from "react-icons/md";
 
-const Home = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: boolean }) => {
+const Home = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: any }) => {
   const [text, setText] = useState<string>("");
   const [textSize, setTextSize] = useState<number>(36);
   const [serifBtn, setSerifBtn] = useState<boolean>(false);

@@ -3,14 +3,109 @@
   flex-direction: column;
   gap: 20px;
   margin-top: 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
 
   .top-text{
     text-align: center;
-    font-size: 12px;
+    font-size: 13px;
     text-transform: uppercase;
     font-family: monospace, sans-serif;
+    color: #ff0000;
+
   }
-  
+
+  .single-font--button{
+    margin: 2rem 0;
+  }
+
+  .download-btn{
+    width: 100px;
+    border: none;
+    background-color: dodgerblue;
+    color: #fff;
+    border-radius: 5px; 
+    height: 35px;
+    align-self: center;
+  }
+
+  .font-name{
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 0;
+    h1{
+      line-height: 3.4rem;
+    }
+    p{
+      color: dodgerblue;
+    }
+  }
+
+  .single-title{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    margin: 2rem 0;
+  }
+
+  .single-styles{
+    margin: 3rem 0;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    .css-1u3bzj6-MuiFormControl-root-MuiTextField-root{
+      flex-grow: 1 !important;  
+    }
+    .range-manu{
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      span{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
 }
 
+
+
+.single__font{
+  margin: 1rem 0;
+  padding: 2rem 1.5rem;
+  overflow: hidden;
+  transition: all .3s ease-in-out;
+  box-sizing: border-box;
+  max-width: 100%;
+  border-top: 1px solid #cfcfcf;
+}
+
+
+@media only screen and (max-width: 950px){
+  .css-t0fo6k-MuiSlider-root{
+    width: 150px !important;
+  }
+  .single-title{
+    h2{
+      font-size: 2rem !important;
+    }
+  }
+}
+
+@media only screen and (max-width: 500px){
+  h1{
+    font-size: 2rem !important;
+  }
+  .css-1gsv261{
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  .single-styles{
+    flex-wrap: wrap;
+  }
+  .single-title{
+    h2{
+      font-size: 1rem !important;
+    }
+  }
+}

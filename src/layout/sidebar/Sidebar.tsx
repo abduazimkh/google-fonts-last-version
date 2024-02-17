@@ -11,7 +11,7 @@ import { TfiShine } from "react-icons/tfi";
 
 
 const Sidebar = ({ colorMode }: { colorMode: any }) => {
-  const theme = useTheme();
+  const theme: any = useTheme();
 
   return (
     <div style={{ backgroundColor: `${theme.palette.mode == 'dark' ? "#777" : "#fff"}` }} className="sidebar-wrapper">

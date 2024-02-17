@@ -46,7 +46,7 @@ const items: MenuProps['items'] = [
 const Nav = () => {
   const [inputvalue, setInputValue] = useState<string>("");
   const dispatch = useDispatch()
-  const theme = useTheme()
+  const theme: any = useTheme()
 
   useEffect(() => {
     dispatch(inputValue(inputvalue.toLocaleLowerCase()))
@@ -67,7 +67,14 @@ const Nav = () => {
       <div className="navigation">
         <nav>
           <Link className="nav-logo" to="/">
-            <img className="first" src={logo} alt="google-fonts logo" />
+            {theme.palette.mode == 'dark' ?
+              <div style={{ display: "flex", alignItems: "center", gap: "1rem", padding: "1.7rem 0" }}>
+                <img width={40} src="https://seeklogo.com/images/G/google-fonts-logo-185D843C0C-seeklogo.com.png" alt="image logo" />
+                <h1 style={{ color: "#fff", fontFamily: "sans-serif", fontSize: "1.5rem" }} >Google Fonts</h1>
+              </div>
+              :
+              <img className="first" src={logo} alt="google-fonts logo" />
+            }
             <img className="second" src="https://seeklogo.com/images/G/google-fonts-logo-185D843C0C-seeklogo.com.png" alt="image logo" />
           </Link>
 

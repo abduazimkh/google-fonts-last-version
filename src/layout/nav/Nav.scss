@@ -5,6 +5,8 @@
       height: 80px;
       object-fit: cover;
       margin-left: -2rem;
+      user-select: none;
+      mix-blend-mode: multiply;
     }
     .second{
       display: none;
@@ -23,7 +25,6 @@ nav{
     align-items: center;
     flex-grow: 1;
     border-radius: 30px;
-    // overflow: hidden;
     padding: 0 1rem;
     background-color: var(--pg-color);
     i{
@@ -71,7 +72,6 @@ nav{
     }
   }
 }
-
 
 @media only screen and (max-width: 950px) {
   .navigation{

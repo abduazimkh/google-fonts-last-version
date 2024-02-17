@@ -25,7 +25,7 @@ const Main = ({ text, textSize, resize }: { text: string, textSize: number, resi
     <div className="main-wrapper">
       {isLoading ? <CardSkeleton amount={10} />
         :
-        fonts_data.slice(0, 50).filter((font: any) => input_value ? font.family.toLocaleLowerCase().indexOf(input_value) != -1 : font.variants.length === resize).map((font: FontsTypes, index: number) => (
+        fonts_data.filter((font: any) => input_value ? font.family.toLocaleLowerCase().indexOf(input_value) != -1 : font.variants.length === resize).map((font: FontsTypes, index: number) => (
           <Link key={index} to={`/single-font/${font.family}`}>
             <div className="font-content" key={index} >
               <div>

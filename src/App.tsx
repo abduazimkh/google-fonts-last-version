@@ -8,9 +8,7 @@ import { useState } from 'react';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "react-loading-skeleton/dist/skeleton.css";
-
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { useTheme } from '@emotion/react';
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => { } });
 
@@ -53,7 +51,7 @@ function App() {
           <div style={isOpen ? { paddingLeft: "300px" } : { paddingLeft: "0px" }} className='app-item'>
             <Container >
               <Nav />
-              <Routes isOpen={isOpen} setIsOpen={setIsOpen} />
+              <Routes isOpen={isOpen} setIsOpen={setIsOpen as any} />
             </Container>
           </div>
         </ThemeProvider>
