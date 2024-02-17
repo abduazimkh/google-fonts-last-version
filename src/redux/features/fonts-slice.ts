@@ -54,10 +54,11 @@ const fontsSlice = createSlice({
             state.isLoading = true
         }),
         builder.addCase(getFonts.fulfilled, (state, action) => {
+            localStorage.setItem("fonts", JSON.stringify(action.payload))
             state.isLoading = false,
             state.isSuccess = true,
             state.isError = false,
-            state.fonts_data = action.payload,
+            state.fonts_data = JSON.parse(localStorage.getItem("fonts") as any)
             state.message = "Successfully added"
         }),
         builder.addCase(getFonts.rejected, (state, _) => {

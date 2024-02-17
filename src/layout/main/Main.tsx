@@ -32,7 +32,7 @@ const Main = ({ text, textSize, resize }: { text: string, textSize: number, resi
                 <p style={{ color: `${theme.palette.mode !== 'dark' ? "#333" : "#fff"}` }} >{font.family}</p>
                 <strong style={{ color: `${theme.palette.mode !== 'dark' ? "#333" : "#fff"}`, }} > | &nbsp; {font.variants.length > 1 ? font.variants.length + " styles" : font.variants.length + " style"}</strong>
               </div>
-              <h2 style={{
+              <h2 className="main__wrapper-font" style={{
                 color: `${theme.palette.mode !== 'dark' ? "#333" : "#fff"}`,
                 fontFamily: font.family + "," + font.category,
                 whiteSpace: "nowrap",
