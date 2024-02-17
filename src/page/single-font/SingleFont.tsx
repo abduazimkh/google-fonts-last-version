@@ -1,6 +1,6 @@
 import * as React from 'react';
 import "./SingleFont.scss";
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getFonts, singleFont } from "../../redux/features/fonts-slice";
@@ -64,7 +64,7 @@ const SingleFont = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: any }) 
     setAge(event.target.value);
     setRangeValue(age)
   };
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleChange = (_: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
   useEffect(() => {
