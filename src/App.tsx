@@ -9,6 +9,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "react-loading-skeleton/dist/skeleton.css";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import BackToTop from './components/backtotop/BackToTop';
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => { } });
 
@@ -45,6 +46,7 @@ function App() {
 
   return (
     <div className='app-wrapper'>
+      <BackToTop />
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
           <Sidebar colorMode={colorMode} />

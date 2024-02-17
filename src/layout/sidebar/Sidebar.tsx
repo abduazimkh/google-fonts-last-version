@@ -27,28 +27,28 @@ const Sidebar = ({ colorMode }: { colorMode: any }) => {
           </li>
 
           <li>
-            <NavLink style={{ color: `${theme.palette.mode !== 'dark' ? "#333" : "#fff"}` }} to="/">
+            <NavLink style={{ color: `${theme.palette.mode !== 'dark' ? "#333" : "#fff"}` }} to="/nato">
               <i><GrLanguage /></i>
               <span>Noto</span>
             </NavLink>
           </li>
 
           <li>
-            <NavLink style={{ color: `${theme.palette.mode !== 'dark' ? "#333" : "#fff"}` }} to="/">
+            <NavLink style={{ color: `${theme.palette.mode !== 'dark' ? "#333" : "#fff"}` }} to="/icons">
               <i><TbIcons /></i>
               <span>Icons</span>
             </NavLink>
           </li>
 
           <li>
-            <NavLink style={{ color: `${theme.palette.mode !== 'dark' ? "#333" : "#fff"}` }} to="/">
+            <NavLink style={{ color: `${theme.palette.mode !== 'dark' ? "#333" : "#fff"}` }} to="/knowladge">
               <i><PiGraduationCap /></i>
               <span>Knowladge</span>
             </NavLink>
           </li>
 
-          <li>
-            <NavLink style={{ color: `${theme.palette.mode !== 'dark' ? "#333" : "#fff"}` }} to="/">
+          <li>  
+            <NavLink style={{ color: `${theme.palette.mode !== 'dark' ? "#333" : "#fff"}` }} to="/faq">
               <i><BsQuestionCircle /></i>
               <span>Faq</span>
             </NavLink>

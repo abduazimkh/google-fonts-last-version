@@ -57,7 +57,7 @@ const Nav = () => {
   };
 
   useEffect(() => {
-    document.body.setAttribute( 'style', theme.palette.mode === 'dark' ? "background-color: #333" : "background-color: #fff")
+    document.body.setAttribute('style', theme.palette.mode === 'dark' ? "background-color: #333" : "background-color: #fff")
   }, [theme])
 
   return (
@@ -66,7 +66,7 @@ const Nav = () => {
         <nav>
           <Link className="nav-logo" to="/">
             {theme.palette.mode == 'dark' ?
-              <div style={{ display: "flex", alignItems: "center", gap: "1rem", padding: "1.7rem 0" }}>
+              <div id="dark-logo" style={{ display: "flex", alignItems: "center", gap: "1rem", padding: "1.7rem 0" }}>
                 <img width={40} src="https://seeklogo.com/images/G/google-fonts-logo-185D843C0C-seeklogo.com.png" alt="image logo" />
                 <h1 style={{ color: "#fff", fontFamily: "sans-serif", fontSize: "1.5rem" }} >Google Fonts</h1>
               </div>
