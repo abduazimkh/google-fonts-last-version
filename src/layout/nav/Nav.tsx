@@ -57,9 +57,7 @@ const Nav = () => {
   };
 
   useEffect(() => {
-    theme.palette.mode === 'dark' ?
-      document.body.style = "background-color: #333" :
-      document.body.style = "background-color: #fff"
+    document.body.setAttribute( 'style', theme.palette.mode === 'dark' ? "background-color: #333" : "background-color: #fff")
   }, [theme])
 
   return (
