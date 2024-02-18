@@ -3,20 +3,19 @@ import "./SingleFont.scss";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getFonts, singleFont } from "../../redux/features/fonts-slice";
 import { FontsTypes } from "../../types";
-import { CardSkeleton } from "../../utils/Utils";
 import { useTheme } from "@emotion/react";
 import TextField from '@mui/material/TextField';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import MenuItem from '@mui/material/MenuItem';
 import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { addToCart, remuveToCart } from '../../redux/features/cart-slice';
+import { getFont } from '../../redux/features/font-slice';
 
 const sizes = [12, 14, 20, 24, 32, 40, 64, 96, 120, 184, 280]
 interface TabPanelProps {
@@ -36,7 +35,7 @@ function CustomTabPanel(props: TabPanelProps) {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+          <div>{children}</div>
         </Box>
       )}
     </div>
@@ -49,11 +48,16 @@ function a11yProps(index: number) {
   };
 }
 
-const SingleFont = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: any }) => {
+const SingleFont = ({ setIsOpen }: { isOpen: boolean, setIsOpen: any }) => {
+  setIsOpen(false)
   const theme: any = useTheme();
   const { font } = useParams<string>();
+
   const dispatch = useDispatch();
-  const { fonts_data, isLoading, single_font } = useSelector((state: any) => state.fonts)
+  const { font_data } = useSelector((state: any) => state.font)
+  console.log(font_data);
+
+  const { cart } = useSelector((state: any) => state.cartAll)
   const [rangeValue, setRangeValue] = React.useState<number>(36)
   const [inputValue, setInputValue] = React.useState<string>("")
 
@@ -67,40 +71,35 @@ const SingleFont = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: any }) 
   const handleChange = (_: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
-  useEffect(() => {
-    dispatch(singleFont(font))
-  }, [font])
-  useEffect(() => {
-    setIsOpen(false)
-  }, [isOpen])
-  const value = {
-    single_font
-  };
-  useEffect(() => {
-    dispatch(getFonts(value) as any)
-  }, [single_font])
 
-  console.log(fonts_data)
+  useEffect(() => {
+    dispatch(getFont(font) as any)
+  }, [font])
 
   return (
     <>
       <div className="single-font__wrapper">
-        <small className="top-text">refresh berganda ozroq o'ynedi sababi redux dagi 1ta slice ga home pagedagi va single pagedagi api joylangan, reduxdagi qushimcha hsusiyatlarini bilish kurish maqsadida qilingan</small>
+        {/* <small className="top-text">refresh berganda ozroq o'ynedi sababi redux dagi 1ta slice ga home pagedagi va single pagedagi api joylangan, reduxdagi qushimcha hsusiyatlarini bilish kurish maqsadida qilingan</small> */}
         <Box sx={{ width: '100%' }}>
           <Box style={{ color: `${theme.palette.mode !== 'dark' ? "#333" : "#fff"}`, display: `${theme.palette.mode !== 'dark' ? "flex" : "flex"}`, justifyContent: `${theme.palette.mode !== 'dark' ? "space-between" : "space-between"}` }} sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+            <Tabs value={valuee} onChange={handleChange} aria-label="basic tabs example">
               <Tab label="Specimen" {...a11yProps(0)} />
               <Tab label="typet ester" {...a11yProps(1)} />
               <Tab label="Glyphs" {...a11yProps(2)} />
             </Tabs>
-            <button className='download-btn'>Download</button>
+            {
+              cart.findIndex((cfont: any) => cfont.family === font_data[0].family) === -1 ?
+                <button onClick={() => dispatch(addToCart(font_data[0]))} className='download-btn'>Add</button>
+              :
+              <button  onClick={() => dispatch(remuveToCart(font_data[0]))} className='download-btn'>Remuve</button>
+            }
           </Box>
           <CustomTabPanel value={valuee} index={0}>
-            {isLoading ? <CardSkeleton amount={5} /> :
-              fonts_data.slice(0, 1).filter((fontItem: any) => fontItem.family === font ? font : fontItem).map((font: FontsTypes, index: number) => (
+            {
+              font_data?.map((font: FontsTypes, index: number) => (
                 <div className="single-font--content" key={index} >
                   <div className='font-name'>
-                    <h1 style={{ fontSize: "4rem", color: `${theme.palette.mode !== 'dark' ? "#333" : "#fff"}` }}>{font.family}</h1>
+                    <h1 style={{ fontFamily: 'sans-serif', fontSize: "4rem", color: `${theme.palette.mode !== 'dark' ? "#333" : "#fff"}` }}>{font.family}</h1>
                     <p>Designed by {font.family}</p>
                   </div>
                   <div className='single-title'>
@@ -140,15 +139,15 @@ const SingleFont = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: any }) 
                         value={rangeValue}
                         onChange={(e: any) => setRangeValue(e.target.value)}
                         sx={{
-                          width: 300,
+                          width: `${theme.palette.mode === 'dark' ? "150px" : "300px"}`,
                           color: 'dodgerblue',
                         }}
                       />
                     </div>
                   </div>
                   {
-                    font.variants.map((fontItem: any) => (
-                      <div style={{ borderBottom: `${fontItem.length > 1 ? "1px solid transparent" : "1px solid #cfcfcf"}` }} className="single__font">
+                    font.variants.map((fontItem: any, index: number) => (
+                      <div key={index} style={{ borderBottom: `${fontItem.length > 1 ? "1px solid transparent" : "1px solid #cfcfcf"}` }} className="single__font">
                         <p style={{ marginBottom: "1rem", color: `${theme.palette.mode !== 'dark' ? "#555" : "#fff"}`, }}>This {fontItem}</p>
                         <h2
                           onClick={(e: any) => {

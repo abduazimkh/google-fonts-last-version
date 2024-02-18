@@ -1,5 +1,5 @@
 import "./Nav.scss";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../../assets/images/fonts-logo.png";
 import { IoIosSearch } from "react-icons/io";
 import Badge from '@mui/material/Badge';
@@ -47,6 +47,7 @@ const Nav = () => {
   const [inputvalue, setInputValue] = useState<string>("");
   const dispatch = useDispatch()
   const theme: any = useTheme()
+  const { pathname }: any = useLocation()
 
   useEffect(() => {
     dispatch(inputValue(inputvalue.toLocaleLowerCase()))
@@ -76,20 +77,31 @@ const Nav = () => {
             <img className="second" src="https://seeklogo.com/images/G/google-fonts-logo-185D843C0C-seeklogo.com.png" alt="image logo" />
           </Link>
 
-          <form className="nav-form__wrapper">
-            <i><IoIosSearch /></i>
-            <input value={inputvalue} onChange={(e) => setInputValue(e.target.value)} type="text" placeholder="Search fonts" />
-            <div className="nav-select">
-              <Menu
-                onClick={onClick}
-                items={items}
-              />
-            </div>
-          </form>
+          {
+            !pathname.includes("/cart") ?
+              <>
+                <form className="nav-form__wrapper">
+                  <i><IoIosSearch /></i>
+                  <input value={inputvalue} onChange={(e) => setInputValue(e.target.value)} type="text" placeholder="Search fonts" />
+                  <div className="nav-select">
+                    <Menu
+                      onClick={onClick}
+                      items={items}
+                    />
+                  </div>
+                </form>
 
-          <Badge color="secondary" variant="dot" >
-            <i className="cart"><SlBag /></i>
-          </Badge>
+                <Badge color="secondary" variant="dot" >
+                  <Link to="/cart">
+                    <i className="cart"><SlBag /></i>
+                  </Link>
+                </Badge>
+              </> :
+              <Link to="/cart">
+                <i className="cart"><SlBag /></i>
+              </Link>
+          }
+
 
 
         </nav>

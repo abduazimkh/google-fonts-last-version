@@ -10,19 +10,14 @@ import "react-toastify/dist/ReactToastify.css";
 import "react-loading-skeleton/dist/skeleton.css";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import BackToTop from './components/backtotop/BackToTop';
+// import { useLocation } from 'react-router-dom';
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => { } });
 
 function App() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-
-  React.useEffect(() => {
-    setTimeout(() => {
-      setIsOpen(true)
-    }, 200)
-  }, [])
-
-
+  // const { pathname } = useLocation();
+  
   const [mode, setMode] = useState<'light' | 'dark'>('light');
 
   const colorMode = React.useMemo(
@@ -52,6 +47,11 @@ function App() {
           <Sidebar colorMode={colorMode} />
           <div style={isOpen ? { paddingLeft: "300px" } : { paddingLeft: "0px" }} className='app-item'>
             <Container >
+              {/* {pathname.includes("/cart") ? <></> : (
+                <>
+                  <Nav />
+                </>
+              )} */}
               <Nav />
               <Routes isOpen={isOpen} setIsOpen={setIsOpen as any} />
             </Container>

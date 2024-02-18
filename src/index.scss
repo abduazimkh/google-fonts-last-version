@@ -25,10 +25,32 @@ body{
 
 a{
   text-decoration: none;
+  color: #333;
 }
 
 
 .wrap_c89d{
-  right: 50px !important;
-  bottom: 70px !important;
+  right: 5px !important;
+  bottom: 10px !important;
+}
+
+@media only screen and (max-width: 900px) {
+  ._showLogo_d574{
+    margin-left: 5px;
+    margin-top: 2px;
+  }
+  .icons_ed73{
+    background-repeat: no-repeat !important;
+    background-size: 60%;
+    background-position: right center;
+    object-fit: cover;
+  }
+  .button_e275{
+    width: 35px !important;
+    height: 35px !important;
+  }
+  .wrap_c89d{
+    right:  -10px !important;
+    bottom: 10px !important;
+  }
 }

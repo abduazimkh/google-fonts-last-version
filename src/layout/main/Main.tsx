@@ -8,24 +8,28 @@ import { useTheme } from "@emotion/react";
 import { Link } from "react-router-dom";
 
 
-const Main = ({ text, textSize, resize }: { text: string, textSize: number, resize: number }) => {
+const Main = ({ text, textSize, resize, serifBtn, slabSerifBtn, sansSerifBtn, display, handle, mono }: 
+
+{ text: string, textSize: number, resize: number, serifBtn: boolean, slabSerifBtn: boolean, sansSerifBtn: boolean, 
+  display: boolean, handle: boolean, mono: boolean }) => {
+
   const { fonts_data, input_value, search_select, isLoading } = useSelector((state: any) => state.fonts)
   const dispatch: any = useDispatch()
   const theme: any = useTheme();
 
-  const value = {
-    search_select,
-  };
-
   useEffect(() => {
-    dispatch(getFonts(value))
-  }, [search_select])
+    dispatch(getFonts(search_select))
+  }, [])
 
   return (
     <div className="main-wrapper">
       {isLoading ? <CardSkeleton amount={10} />
         :
-        fonts_data.filter((font: any) => input_value ? font.family.toLocaleLowerCase().indexOf(input_value) != -1 : font.variants.length === resize).map((font: FontsTypes, index: number) => (
+        fonts_data.slice(0, 10).filter((b: any) => b.category.indexOf(
+          display && "display" || mono && "monospace" || handle && "handwriting" ||
+          ((display && "display") && (mono && "monospace") && (handle && "handwriting")) ||
+          ((display && "display") && (mono && "monospace")) || (serifBtn && "serif" || sansSerifBtn && "sans-serif" || slabSerifBtn && "slab-serif" ) || ""
+        ) !== -1).filter((font: any) => input_value ? font.family.toLocaleLowerCase().indexOf(input_value) != -1 : font.variants.length === resize).map((font: FontsTypes, index: number) => (
           <Link key={index} to={`/single-font/${font.family}`}>
             <div className="font-content" key={index} >
               <div>

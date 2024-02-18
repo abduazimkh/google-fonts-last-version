@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import { GiSettingsKnobs } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
 import Main from "../../layout/main/Main";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import { Flex, Typography } from "antd";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -13,17 +13,38 @@ import { MdLanguage } from "react-icons/md";
 const Home = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: any }) => {
   const [text, setText] = useState<string>("");
   const [textSize, setTextSize] = useState<number>(36);
+  const [rangeSize, setRangeSize] = useState<number>(1)
+
   const [serifBtn, setSerifBtn] = useState<boolean>(false);
   const [slabSerifBtn, setSlabSerifBtn] = useState<boolean>(false);
   const [sansSerifBtn, setSansSerifBtn] = useState<boolean>(false);
-  const [rangeSize, setRangeSize] = useState<number>(1)
+
+  const [display, setDisplay] = useState<boolean>(false)
+  const [handle, setHandle] = useState<boolean>(false)
+  const [mono, setMono] = useState<boolean>(false)
+  
+  useEffect(() => {
+    setTimeout(() => {
+      setIsOpen(true)
+    }, 200)
+  }, [])
 
   return (
     <>
       <div>
         <Button className="filter-btn" onClick={() => setIsOpen(!isOpen)} variant="contained"> {isOpen ? <i><IoMdClose /></i> : <i><GiSettingsKnobs /></i>} Filter</Button>
 
-        <Main resize={rangeSize} text={text} textSize={textSize} />
+        <Main 
+          resize={rangeSize} 
+          text={text} 
+          textSize={textSize} 
+          serifBtn={serifBtn}
+          slabSerifBtn={slabSerifBtn}
+          sansSerifBtn={sansSerifBtn}
+          display={display}
+          handle={handle}
+          mono={mono}
+        />
 
       </div>
       <Dewider isOpen={isOpen} name="left">
@@ -83,7 +104,7 @@ const Home = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: any }) => {
               </Button>
               <Button style={{ backgroundColor: "#fff", margin: "3px" }} className="checked-btn" onClick={() => setSansSerifBtn(!sansSerifBtn)}>
                 {sansSerifBtn ? <span className="material-symbols-outlined">check</span> : ""}
-                San Serif
+                Sans Serif
               </Button>
             </AccordionDetails>
           </Accordion>
@@ -93,10 +114,18 @@ const Home = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: any }) => {
               Classfication
             </AccordionSummary>
             <AccordionDetails style={{ backgroundColor: "transparent" }} className="classfication-btns">
-              <Button style={{ backgroundColor: "#fff", margin: "3px" }} >Display</Button>
-              <Button style={{ backgroundColor: "#fff", margin: "3px" }} >Handwriting</Button>
-              <Button style={{ backgroundColor: "#fff", margin: "3px" }} >Monospace</Button>
-              <Button style={{ backgroundColor: "#fff", margin: "3px" }} >Not text</Button>
+              <Button style={{ backgroundColor: "#fff", margin: "3px" }} onClick={() => setDisplay(!display)} >
+                {display ? <span className="material-symbols-outlined">check</span> : ""}
+                Display
+              </Button>
+              <Button style={{ backgroundColor: "#fff", margin: "3px" }} onClick={() => setHandle(!handle)}   >
+                {handle ? <span className="material-symbols-outlined">check</span> : ""}
+                Handwriting
+              </Button>
+              <Button style={{ backgroundColor: "#fff", margin: "3px" }} onClick={() => setMono(!mono)}       >
+                {mono ? <span className="material-symbols-outlined">check</span> : ""}
+                Monospace
+              </Button>
             </AccordionDetails>
           </Accordion>
           <Accordion>
