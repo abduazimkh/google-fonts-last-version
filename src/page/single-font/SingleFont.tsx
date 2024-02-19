@@ -57,7 +57,7 @@ const SingleFont = ({ setIsOpen }: { isOpen: boolean, setIsOpen: any }) => {
   const { font_data } = useSelector((state: any) => state.font)
   console.log(font_data);
 
-  const { cart } = useSelector((state: any) => state.cartAll)
+  const { cart } = useSelector((state: any) => state.cart)
   const [rangeValue, setRangeValue] = React.useState<number>(36)
   const [inputValue, setInputValue] = React.useState<string>("")
 
