@@ -3,13 +3,12 @@ import { Container } from "@mui/material"
 import { Button } from "antd";
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom";
-import { RootState } from "../../redux/store";
 import { remuveToCart } from "../../redux/features/cart-slice";
 import { useTheme } from "@emotion/react";
 
 const Cart = ({ setIsOpen }: { isOpen: boolean, setIsOpen: any }) => {
   setIsOpen(false)
-  const { cart } = useSelector((state: RootState) => state.cart)
+  const { cart } = useSelector((state: any) => state.cart)
   const dispatch = useDispatch()
   const theme: any = useTheme();
 
