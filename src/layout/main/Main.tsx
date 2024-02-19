@@ -25,7 +25,7 @@ const Main = ({ text, textSize, resize, serifBtn, slabSerifBtn, sansSerifBtn, di
     <div className="main-wrapper">
       {isLoading ? <CardSkeleton amount={10} />
         :
-        fonts_data.slice(0, 10).filter((b: any) => b.category.indexOf(
+        fonts_data.filter((b: any) => b.category.indexOf(
           display && "display" || mono && "monospace" || handle && "handwriting" ||
           ((display && "display") && (mono && "monospace") && (handle && "handwriting")) ||
           ((display && "display") && (mono && "monospace")) || (serifBtn && "serif" || sansSerifBtn && "sans-serif" || slabSerifBtn && "slab-serif" ) || ""

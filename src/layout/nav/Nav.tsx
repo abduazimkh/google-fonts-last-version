@@ -8,7 +8,7 @@ import { SettingOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { inputValue, searchSelect } from "../../redux/features/fonts-slice";
 import { useTheme } from "@emotion/react";
 
@@ -48,6 +48,7 @@ const Nav = () => {
   const dispatch = useDispatch()
   const theme: any = useTheme()
   const { pathname }: any = useLocation()
+  const { cart } = useSelector((state: any) => state.cart);
 
   useEffect(() => {
     dispatch(inputValue(inputvalue.toLocaleLowerCase()))
@@ -91,11 +92,18 @@ const Nav = () => {
                   </div>
                 </form>
 
-                <Badge color="secondary" variant="dot" >
-                  <Link to="/cart">
-                    <i className="cart"><SlBag /></i>
-                  </Link>
-                </Badge>
+                {
+                  cart.length > 0 ?
+                    <Badge color="secondary" variant="dot" >
+                      <Link to="/cart">
+                        <i className="cart"><SlBag /></i>
+                      </Link>
+                    </Badge>
+                    :
+                    <Link to="/cart">
+                      <i className="cart"><SlBag /></i>
+                    </Link>
+                }
               </> :
               <Link to="/cart">
                 <i className="cart"><SlBag /></i>

@@ -1,22 +1,25 @@
 import "./Cart.scss";
 import { Container } from "@mui/material"
 import { Button } from "antd";
-import { useEffect } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom";
 import { RootState } from "../../redux/store";
+import { remuveToCart } from "../../redux/features/cart-slice";
+import { useTheme } from "@emotion/react";
 
-const Cart = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: any }) => {
+const Cart = ({ setIsOpen }: { isOpen: boolean, setIsOpen: any }) => {
   setIsOpen(false)
-  const { cart } = useSelector((state: RootState) => state.cartAll)
+  const { cart } = useSelector((state: RootState) => state.cart)
+  const dispatch = useDispatch()
+  const theme: any = useTheme();
 
-  console.log(cart)
 
   return (
     <>
       <div className="cart__wrapper">
-        <h2>{cart.length} font family selected</h2>
-
+        {
+          cart.length > 0 && <h2 style={{ color: `${theme.palette.mode !== 'dark' ? "#333" : "#fff"}`, }} className="wishlist-length">{cart.length} font family selected</h2>
+        }
         <Container>
           {
             cart.length <= 0 ?
@@ -30,11 +33,39 @@ const Cart = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: any }) => {
               </div>
               :
               <div className="cart-box">
-                <div className="cart-item">
-                  wefewf
+                <div className="cart-item--wrapper">
+                  <div className="cart-item--button">
+                    <Button>Share</Button>
+                    <Button>Remuve All</Button>
+                  </div>
+                  <div className="cart-item--list">
+                    {
+                      cart.map((font: any, index: number) => (
+                        <div className="cart-box" key={index}>
+                          <div className="item-top-content">
+                            <b style={{ color: `${theme.palette.mode !== 'dark' ? "#333" : "#fff"}`, }} >{font.family}</b>
+                            <div>
+                              <button onClick={() => dispatch(remuveToCart(font))} >del</button>
+                              <button>few</button>
+                            </div>
+                          </div>
+                          <h3 style={{
+                            color: `${theme.palette.mode !== 'dark' ? "#333" : "#fff"}`,
+                            fontFamily: font.family + "," + font.category,
+                            fontSize: "4rem",
+                            textAlign: "center"
+                          }} >Lorem ipsum dolor sit amet. Hello world lorem se</h3>
+
+                        </div>
+                      ))
+                    }
+                  </div>
                 </div>
                 <div className="cart-item">
-                  ewfewfew
+                  <Button>Get embded code</Button>
+                  <Button>Download all</Button>
+
+                  <Link to="see">See how to use</Link>
                 </div>
               </div>
           }

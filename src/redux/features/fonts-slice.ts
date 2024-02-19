@@ -20,7 +20,7 @@ const initialState: InitialStateType = {
 const getFonts = createAsyncThunk("fonts", async (value: any, {rejectWithValue} : {rejectWithValue: any}) => {
     try {
         const response: AxiosResponse = await instsnce.get(`/webfonts?key=${API_KEY}${value ? "&sort="+value : ""}`)
-        response.data.items.slice(0, 30).map((font:any)=>{fontsLoader(font.family)})
+        response.data.items.map((font:any)=>{fontsLoader(font.family)})
         return response.data.items
     }
     catch (error: any) {
@@ -35,12 +35,10 @@ const fontsSlice = createSlice({
     initialState,
     reducers: {
         inputValue: (state, action) => {
-            localStorage.setItem("search", action.payload);
-            state.input_value = localStorage.getItem("search") as string;
+            state.input_value = action.payload
         },
         searchSelect: (state, action) => {
-            localStorage.setItem("search-select", action.payload);
-            state.search_select = localStorage.getItem("search-select") as string;
+            state.search_select = action.payload
         }
     },
     extraReducers: (builder) => {
@@ -48,11 +46,10 @@ const fontsSlice = createSlice({
             state.isLoading = true
         }),
         builder.addCase(getFonts.fulfilled, (state, action) => {
-            localStorage.setItem("fonts", JSON.stringify(action.payload))
             state.isLoading = false,
             state.isSuccess = true,
             state.isError = false,
-            state.fonts_data = JSON.parse(localStorage.getItem("fonts") as any)
+            state.fonts_data = action.payload
             state.message = "Successfully added"
         }),
         builder.addCase(getFonts.rejected, (state, _) => {
