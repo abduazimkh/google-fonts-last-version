@@ -42,24 +42,24 @@ const Cart = ({ setIsOpen }: { isOpen: boolean, setIsOpen: any }) => {
                   <div className="cart-item--list">
                     {
                       cart.map((font: any, index: number) => (
-                        <Link className="cart-font" to={`/single-font/${font.family}`} key={index}>
-                          <div className="cart-box" >
-                            <div className="item-top-content">
-                              <b style={{ color: `${theme.palette.mode !== 'dark' ? "#333" : "#fff"}`, }} >{font.family}</b>
-                              <div>
-                                <IconButton onClick={() => dispatch(remuveToCart(font))} aria-label="fingerprint" color="primary"><IoTrashOutline /></IconButton>
-                                <IconButton aria-label="fingerprint" color="primary"><CiSaveDown1 /></IconButton>
-                              </div>
+                        // <Link className="cart-font" to={`/single-font/${font.family}`} key={index}>
+                        <div className="cart-box" key={index} >
+                          <div className="item-top-content">
+                            <b style={{ color: `${theme.palette.mode !== 'dark' ? "#333" : "#fff"}`, }} >{font.family}</b>
+                            <div>
+                              <IconButton onClick={() => dispatch(remuveToCart(font))} aria-label="fingerprint" color="primary"><IoTrashOutline /></IconButton>
+                              <IconButton aria-label="fingerprint" color="primary"><CiSaveDown1 /></IconButton>
                             </div>
-                            <h3 style={{
-                              color: `${theme.palette.mode !== 'dark' ? "#333" : "#fff"}`,
-                              fontFamily: font.family + "," + font.category,
-                              fontSize: "4rem",
-                              textAlign: "center"
-                            }} >Lorem ipsum dolor sit amet. Hello world lorem se</h3>
-
                           </div>
-                        </Link>
+                          <h3 style={{
+                            color: `${theme.palette.mode !== 'dark' ? "#333" : "#fff"}`,
+                            fontFamily: font.family + "," + font.category,
+                            fontSize: "4rem",
+                            textAlign: "center"
+                          }} >Lorem ipsum dolor sit amet. Hello world lorem se</h3>
+
+                        </div>
+                        // </Link>
                       ))
                     }
                   </div>

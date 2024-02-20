@@ -86,6 +86,7 @@
   flex-direction: column;
 
   .styles-code{
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -106,6 +107,21 @@
     --webkit-apperance: none;
     background-color: #1e8fff7c;
     border-radius: 10px;
+  }
+
+}
+
+
+@media only screen and (max-width: 1220px) {
+  .embded-box-styles{
+    max-width: 35%;
+    width: 80% !important;
+    height: 400px;
+  }
+  .styles-code{
+    code {
+      white-space: initial;
+    }
   }
 
 }

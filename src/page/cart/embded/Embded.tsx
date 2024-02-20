@@ -11,7 +11,14 @@ import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import { Button } from "@mui/material";
+import Button from "@mui/material/Button";
+
+import Grid from '@mui/material/Grid';
+import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
+
+interface State extends SnackbarOrigin {
+  open: boolean;
+}
 
 
 const Embded = () => {
@@ -28,6 +35,37 @@ const Embded = () => {
   const handleChangee = (_: React.SyntheticEvent, newValue: string) => {
     setValuee(newValue);
   };
+
+  const [state, setState] = React.useState<State>({
+    open: false,
+    vertical: 'top',
+    horizontal: 'center',
+  });
+  const { vertical, horizontal, open } = state;
+
+  const handleClick = (newState: SnackbarOrigin) => () => {
+    setState({ ...newState, open: true });
+    navigator.clipboard.writeText(divv.current.innerText)
+  };
+
+  const handleClose = () => {
+    setState({ ...state, open: false });
+  };
+
+
+  const buttons = (
+    <React.Fragment>
+      <Grid container justifyContent="center">
+        <Grid item xs={6} textAlign="right">
+          <Button style={{ color: "#333", position: "absolute", bottom: ".5rem", right: ".5rem" }} onClick={handleClick({ vertical: 'bottom', horizontal: 'left' })}>
+            Copy code
+          </Button>
+        </Grid>
+      </Grid>
+    </React.Fragment>
+  );
+
+
 
   return (
     <div className="embded__wrapper">
@@ -94,7 +132,16 @@ const Embded = () => {
                         </code>
                       </span>
 
-                      <Button style={{ color: "#333", position: "absolute", bottom: ".5rem", right: ".5rem" }} > Copy code</Button>
+                      <Box>
+                        {buttons}
+                        <Snackbar
+                          anchorOrigin={{ vertical, horizontal }}
+                          open={open}
+                          onClose={handleClose}
+                          message="Saved code"
+                          key={vertical + horizontal}
+                        />
+                      </Box>
                     </TabPanel>
                     <TabPanel className="aaa" value="2">
                       <span>
@@ -111,8 +158,16 @@ const Embded = () => {
                         </code>
                       </span>
 
-
-                      <Button style={{ color: "#333", position: "absolute", bottom: ".5rem", right: ".5rem" }} > Copy code</Button>
+                      <Box>
+                        {buttons}
+                        <Snackbar
+                          anchorOrigin={{ vertical, horizontal }}
+                          open={open}
+                          onClose={handleClose}
+                          message="Saved code"
+                          key={vertical + horizontal}
+                        />
+                      </Box>
                     </TabPanel>
                   </TabContext>
                 </Box>
@@ -130,7 +185,7 @@ const Embded = () => {
                               return (
                                 <div key={f}>
                                   <pre >
-                                    <code ref={divv} style={{ fontSize: "12px !important", whiteSpace: "pre" }} >
+                                    <code ref={divv} style={{ fontSize: "12px !important" }} >
                                       {`
     .${font.family + " " + f} {
         font - family: "${font.family}", ${font.category};
@@ -145,9 +200,17 @@ const Embded = () => {
                             })
                           }
 
-                          <Button onClick={(e) => {
-                            navigator.clipboard.writeText(divv.current.innerText)
-                          }} style={{ color: "#333" }} > Copy code</Button>
+
+                          <Box>
+                            {buttons}
+                            <Snackbar
+                              anchorOrigin={{ vertical, horizontal }}
+                              open={open}
+                              onClose={handleClose}
+                              message="Saved code"
+                              key={vertical + horizontal}
+                            />
+                          </Box>
                         </div>
                       )
                     })
@@ -161,8 +224,6 @@ const Embded = () => {
           </Box>
         </div>
       </div>
-
-
     </div>
   )
 }
