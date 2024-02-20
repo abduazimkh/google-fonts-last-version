@@ -128,7 +128,7 @@ const Embded = () => {
                           {`<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>`}
                         </code>
                         <code className="links" >
-                          {`<link href="https://fonts.googleapis.com/css2?family=${cart.map(a => a.family).join("&family=")}&display=swap" rel="stylesheet">`}
+                          {`<link href="https://fonts.googleapis.com/css2?family=${cart.map((k: any) => k.family).join("&family=")}&display=swap" rel="stylesheet">`}
                         </code>
                       </span>
 
@@ -150,7 +150,7 @@ const Embded = () => {
                         </code>
                         <code className="links" >
                           {`                         
-                            @import url('https://fonts.googleapis.com/css2?family=${cart.map(a => a.family).join("&family=")}&display=swap')
+                            @import url('https://fonts.googleapis.com/css2?family=${cart.map((k: any) => k.family).join("&family=")}&display=swap')
                           `}
                         </code>
                         <code className="links" >
