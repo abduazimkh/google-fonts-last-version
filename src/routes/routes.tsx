@@ -1,10 +1,12 @@
 import { Suspense, lazy } from "react";
-import { useRoutes } from "react-router-dom";
+import { Outlet, useRoutes } from "react-router-dom";
 import { Loading } from "../utils/Utils";
-import Cart from "../page/cart/Cart";
 
 const Home = lazy(() => import("../page/home/Home"));
 const SingleFont = lazy(() => import("../page/single-font/SingleFont"));
+const Embded = lazy(() => import("../page/cart/embded/Embded"));
+const Cart = lazy(() => import("../page/cart/Cart"));
+
 
 const RouteController = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: boolean }) => {
 
@@ -29,9 +31,27 @@ const RouteController = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: bo
       path: "/cart",
       element: (
         <Suspense fallback={<Loading />}>
-          <Cart isOpen={isOpen} setIsOpen={setIsOpen} />
+          <Outlet />
         </Suspense>
-      )
+      ),
+      children: [
+        {
+          path: "",
+          element: (
+            <Suspense fallback={<Loading />}>
+              <Cart isOpen={isOpen} setIsOpen={setIsOpen} />
+            </Suspense>
+          ),
+        },
+        {
+          path: "embded",
+          element: (
+            <Suspense fallback={<Loading />}>
+              <Embded />
+            </Suspense>
+          ),
+        }
+      ]
     }
   ]);
 

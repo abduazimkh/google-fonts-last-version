@@ -1,6 +1,13 @@
 .cart__wrapper{
   margin-bottom: 100px;
 }
+.cart-font{
+  border: 2px solid transparent;
+}
+.cart-font:active{
+  border: 2px solid blue;
+  border-radius: 10px;
+}
 
 .cart-box{
   display: flex;
@@ -9,26 +16,22 @@
   gap: 2rem;
 
   .cart-item--list{
-    max-height: 800px;
     overflow: auto;
     display: flex;
     flex-direction: column;
     gap: 10px;
-
-    &::-webkit-scrollbar{
-      display: none;
-    }
     .cart-box{
       display: flex;
       flex-direction: column;
       overflow: hidden;
       padding: 2rem 1rem;
       border-bottom: 1px solid #d4d4d4;
+      max-width: 700px;
       .item-top-content{
         display: flex;
         align-items: center;
         justify-content: space-between;
-        width: 100%;
+        // width: 100%;
         div{
           display: flex;
           align-items: center;
@@ -59,12 +62,16 @@
     background-color: #F8FAFD;
     gap: 1rem;
     width: 30%;
-    button{
-      background-color: dodgerblue;
-      color: #fff;
-      padding: .7rem;
-      font-weight: 600;
-      height: auto;
+
+    .cart-item--btns{
+      button{
+        background-color: dodgerblue;
+        padding: .7rem;
+        font-weight: 600;
+        height: auto;
+        width: 100%;
+        color: #fff;
+      }
     }
     a{
       margin-top: 1rem;
@@ -103,7 +110,7 @@
 }
 
 .cart-item--wrapper{
-  width: 100%;
+  width: 100% !important;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -112,7 +119,31 @@
     align-items: center;
     gap: 20px;
     align-self: flex-end;
+    button{
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+  }
+}
+
+
+@media only screen and (max-width: 700px){
+  .cart-box{
+    flex-direction: column-reverse;
   }
 
+  .cart-item{
+    width: 90% !important;
+    margin: 0 auto;
+  }
+
+}
+
+@media only screen and (max-width: 500px){
+  .cart-item{
+    width: 80% !important;
+    margin: 0 auto;
+  }
 
 }

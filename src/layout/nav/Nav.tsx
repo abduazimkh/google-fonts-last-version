@@ -94,7 +94,7 @@ const Nav = () => {
 
                 {
                   cart.length > 0 ?
-                    <Badge color="secondary" variant="dot" >
+                    <Badge color="primary" badgeContent={cart.length} >
                       <Link to="/cart">
                         <i className="cart"><SlBag /></i>
                       </Link>

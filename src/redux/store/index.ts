@@ -11,7 +11,7 @@ const persistConfig = {
   version: 1,
   storage,
   blacklist: ['omitedPart']
-};
+};  
 
 const reducer = combineReducers({
     cart: CartReducer,

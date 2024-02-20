@@ -55,7 +55,6 @@ const SingleFont = ({ setIsOpen }: { isOpen: boolean, setIsOpen: any }) => {
 
   const dispatch = useDispatch();
   const { font_data } = useSelector((state: any) => state.font)
-  console.log(font_data);
 
   const { cart } = useSelector((state: any) => state.cart)
   const [rangeValue, setRangeValue] = React.useState<number>(36)
@@ -79,7 +78,6 @@ const SingleFont = ({ setIsOpen }: { isOpen: boolean, setIsOpen: any }) => {
   return (
     <>
       <div className="single-font__wrapper">
-        {/* <small className="top-text">refresh berganda ozroq o'ynedi sababi redux dagi 1ta slice ga home pagedagi va single pagedagi api joylangan, reduxdagi qushimcha hsusiyatlarini bilish kurish maqsadida qilingan</small> */}
         <Box sx={{ width: '100%' }}>
           <Box style={{ color: `${theme.palette.mode !== 'dark' ? "#333" : "#fff"}`, display: `${theme.palette.mode !== 'dark' ? "flex" : "flex"}`, justifyContent: `${theme.palette.mode !== 'dark' ? "space-between" : "space-between"}` }} sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs value={valuee} onChange={handleChange} aria-label="basic tabs example">

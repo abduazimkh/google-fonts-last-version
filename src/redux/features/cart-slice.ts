@@ -18,8 +18,11 @@ const AddToCartSlice = createSlice({
         let data: any = state.cart.findIndex((font: any) => font.family === action.payload.family)
         state.cart = state.cart.filter((_: any, index: any) => index !== data)
       },
+      remuveAllToCart: (state) => {
+        state.cart = []
+      }
     }
 });
 
-export const { addToCart, remuveToCart } = AddToCartSlice.actions;
+export const { addToCart, remuveToCart, remuveAllToCart } = AddToCartSlice.actions;
 export const CartReducer =  AddToCartSlice.reducer;
